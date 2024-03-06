@@ -1,0 +1,19 @@
+---
+title: "About"
+image: fotoperfil.jpg
+about:
+  template: jolla
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/guilleferchero/
+    - icon: github
+      text: Github
+      href: https://github.com/GuilleFerchero
+---
+
+Soy sociólogo egresado de la UBA y me especializo en análisis y visualización de datos. Los campos que me interesan tienen que ver con georeferenciación, análisis de discurso, cultura general y todo lo que se vincule con datos, gráficos y software libre.
+
+La idea de este blog es encontrar un sitio donde publicar todas las ideas y proyectos que voy llevando a cabo a través de R.
+
+Bienvenidos!
