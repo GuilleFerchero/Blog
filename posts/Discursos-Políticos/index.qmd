@@ -13,7 +13,7 @@ format:
 
 ## Discursos inaugurales
 
-A continuación vamos a ver un breve análisis de texto acerca de los primeros discursos inaugurales de Asambleas Legislativas de Macri, Fernandez y Milei.
+A continuación vamos a ver un breve análisis de texto acerca de los primeros discursos inaugurales de Asambleas Legislativas de Macri, Fernandez y Milei. La idea es evaluar cuales fueron los términos más utilizados por los mandatarios y, sumado a ello, entender en los sentimientos volcados en los discursos.
 
 ## Ideas
 
@@ -27,15 +27,16 @@ A continuación vamos a ver un breve análisis de texto acerca de los primeros d
 
 [Sitio de Casa Rosada](https://www.casarosada.gob.ar/informacion/discursos)
 
-PRUEBA
+Procedemos a activar librerías de trabajo y definir un objeto con una lista de palabras que vamos a excluir del análisis.
 
-```{r inicio}
+```{r , echo=FALSE, warning=FALSE,message = FALSE}
 
 #| echo: false
 #| warnning: false
+#| include: false
 
 
-rm(list =ls())
+#rm(list =ls())
 
 
 for( package in c("tm", "tidyverse",
@@ -58,7 +59,7 @@ palabras_inutiles <- c("aplausos","si","ser","vez","cada")
 
 ```
 
-PRUEBA
+El paso siguiente incorporar en el ambiente de trabajo los discursos en formato .txt.
 
 ```{r data}
 #| echo: false
@@ -169,9 +170,7 @@ graf_1
 
 ```
 
-Tal cual se observa, el discurso de Fernandez es el que mayor cantidad de palabras contiene, seguido de Milei con 8.523 palabras finales.
-Veamos ahora quien usó en mas ocasiones la palabra "deuda". 
-
+Tal cual se observa, el discurso de Fernandez es el que mayor cantidad de palabras contiene, seguido de Milei con 8.523 palabras finales. Veamos ahora quien usó en mas ocasiones la palabra "deuda".
 
 ```{r}
 
@@ -209,11 +208,12 @@ Grafico_deuda
 
 ```
 
-Nube de palabras
+## Nube de palabras
 
+Vamos a incorporar una útil herramienta para visualizar la proporción de las plabras utilizadas de un modo más agradable. Me refiero a las nubes de palabras, ya con nuestro conjunto de palabras válidas a utilizar es posible graficarlas. Veamos la nube de palabras del discuros de Javier Milei:
 
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
 #nube de palabras discurso 1 (MILEI)
@@ -221,8 +221,10 @@ Nube de palabras
 wordcloud(palabras1.1$word,palabras1.1$n,scale=c(4,.1),random.order=FALSE,random.color=TRUE,rot.per=0.4,colors= c("#54007d"))
 ```
 
+Tal cual puede verse, "política" es la noción que más utilizó en sintonía con la lógica de su campaña y su tono antipolítico.
+
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
 #TOP 10 discurso 1 (MILEI)
@@ -249,13 +251,10 @@ Grafico2
 
 ```
 
-
-
 Palabras de Fernandez
 
-
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
 #nube de palabras discurso 2
@@ -264,12 +263,10 @@ wordcloud(palabras2.1$word,palabras1.1$n,scale=c(4,.1),random.order=FALSE,random
 
 ```
 
-
-grafico 
-
+Por su parte, Alberto Fernandez posicionó a Argentina en el primer puesto de su lista de palabras. Tambien se advierte la presencia de terminos como "desarrollo" y "federal".
 
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
 #TOP 10 discurso 2 (FERNANDEZ)
@@ -294,16 +291,10 @@ Grafico3 <- highchart() %>%
 Grafico3
 ```
 
-
-
 Palabras de Macri
 
-
-
-
-
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
 #nube de palabras discurso 3
@@ -311,11 +302,10 @@ Palabras de Macri
 wordcloud(palabras3.1$word,palabras1.1$n,scale=c(4,.1),random.order=FALSE,random.color=TRUE,rot.per=0.4,colors= c("gold"))
 ```
 
-
-graf 
+graf
 
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
 #TOP 10 discurso 3 (MACRI)
@@ -342,14 +332,10 @@ Grafico4
 
 ```
 
-
-
-
-
 ## Análisis de sentimiento
 
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
 # Aplicamos el análisis de sentimientos a nivel de palabras (MILEI)
@@ -367,10 +353,8 @@ texto_sentimientos_mi <- sentimientos_mi %>%
 
 ```
 
-
-
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
 #TOP 10 discurso 1 (MILEI) PALABRAS NEGATIVAS
@@ -398,10 +382,8 @@ Grafico_neg_mi
 
 ```
 
-
-
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
 #TOP 10 discurso 1 (MILEI) PALABRAS POSITIVAS
@@ -429,9 +411,8 @@ Grafico_pos_mi
 
 ```
 
-
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
 # Aplicamos el análisis de sentimientos a nivel de palabras (FERNANDEZ)
@@ -450,7 +431,7 @@ texto_sentimientos_fer <- sentimientos_fer %>%
 ```
 
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
 #TOP 10 discurso 2 (FERNANDEZ) PALABRAS NEGATIVAS
@@ -478,10 +459,8 @@ Grafico_neg_fer
 
 ```
 
-
-
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
 #TOP 10 discurso 2 (FERNANDEZ) PALABRAS POSITIVAS
@@ -509,10 +488,8 @@ Grafico_pos_fer
 
 ```
 
-
-
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
 # Aplicamos el análisis de sentimientos a nivel de palabras (MACRI)
@@ -530,11 +507,8 @@ texto_sentimientos_ma <- sentimientos_ma %>%
 
 ```
 
-
-
-
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
 #TOP 10 discurso 3 (MACRI) PALABRAS NEGATIVAS
@@ -562,13 +536,11 @@ Grafico_neg_ma
 
 ```
 
-
-
 ```{r}
-#| echo: false
+#| echo: true
 #| warning: false
 
-#TOP 10 discurso 1 (MILEI) PALABRAS POSITIVAS
+#TOP 10 discurso 1 (MACRI) PALABRAS POSITIVAS
 
 Tabla_neg_ma <- texto_sentimientos_ma %>% 
   filter(positive > 0) %>% 
@@ -585,7 +557,7 @@ Grafico_neg_ma <- highchart() %>%
       colorByPoint = TRUE
     )) %>% 
   hc_credits(enabled = TRUE, text = "Elaboración propia en base a datos de  Casa Rosada.") %>% 
-  hc_colors(color="#902e59") %>% 
+  hc_colors(color="#52bfc1") %>% 
   hc_legend(FALSE)
 
 Grafico_neg_ma
