@@ -1,11 +1,11 @@
 ---
-title: "Welcome To My Blog"
-author: "Tristan O'Malley"
+title: "Bienvenidos"
+author: "Guille Ferchero"
 date: "2024-03-13"
 categories: [news]
 ---
 
-This is the first post in a Quarto blog. Welcome!
+Bienvenidos!
 
 ![](thumbnail.jpg)
 
