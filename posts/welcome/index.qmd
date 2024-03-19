@@ -1,12 +1,18 @@
 ---
-title: "Welcome To My Blog"
+title: "Bienvenidos a Bitácora"
 author: "Guille Ferchero"
 date: "2024-03-13"
-categories: [news]
+categories: [editorial]
 ---
 
-Hola!. Welcome!
+Hola!. Bienvenidos a **Bitácora**. Un blog que contiene artículos cuyo hilo conductor son los datos y sus análisis mediante R. Los tópicos a cubrir van desde cultura general hasta urbanismo y movilidad pasando por analisis de discurso y datos deportivos.
 
-![](thumbnail.jpg)
+![](thumbnail2.jpg)
 
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
+## Propuesta
+
+La idea del blog es ofrecer ejemplos didácticos de todas las posibilidades que brinda el mundo del análisis de datos, desde su limpieza hasta la generación de información.
+
+En los tiempos que corren, casi cualquier problemática puede abordarse a partir de la busqueda y explotación de datos. Por ello resulta fundamental el entrenamiento en esta materia.
+
+Bienvenidos!
