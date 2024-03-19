@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Bitácora de datos",
     "section": "",
-    "text": "Post With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 16, 2024\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nBienvenidos a Bitácora\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nMar 13, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis de discursos inaugurales\n\n\n\n\n\n\npolítica\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 5, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\nNo matching items"
+    "text": "Post With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 16, 2024\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nBienvenidos a Bitácora\n\n\n\n\n\n\neditorial\n\n\n\n\n\n\n\n\n\nMar 13, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis de discursos inaugurales\n\n\n\n\n\n\npolítica\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 5, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/post-with-code/index.html",
@@ -25,7 +25,7 @@
     "href": "posts/welcome/index.html",
     "title": "Bienvenidos a Bitácora",
     "section": "",
-    "text": "Hola!. Bienvenidos a Bitácora. Un blog que contiene artículos cuyo hilo conductor son los datos y sus análisis mediante R. Los tópicos a cubrir\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "Hola!. Bienvenidos a Bitácora. Un blog que contiene artículos cuyo hilo conductor son los datos y sus análisis mediante R. Los tópicos a cubrir van desde cultura general hasta urbanismo y movilidad pasando por analisis de discurso y datos deportivos."
   },
   {
     "objectID": "posts/Discursos Políticos/index.html",
@@ -75,5 +75,12 @@
     "title": "Análisis de discursos inaugurales",
     "section": "Nube de palabras",
     "text": "Nube de palabras\nVamos a incorporar una útil herramienta para visualizar la proporción de las plabras utilizadas de un modo más agradable. Me refiero a las nubes de palabras, ya con nuestro conjunto de palabras válidas a utilizar es posible graficarlas. Veamos la nube de palabras del discuros de Javier Milei:\n\n\nVer código\n#nube de palabras discurso 1 (MILEI)\n\nwordcloud(palabras1.1$word,palabras1.1$n,scale=c(4,.1),random.order=FALSE,random.color=TRUE,rot.per=0.4,colors= c(\"#54007d\"))\n\n\n\n\n\n\n\n\n\nTal cual puede verse, “política” es la noción que más utilizó en sintonía con la lógica de su campaña y su tono antipolítico.\n\n\nVer código\n#TOP 10 discurso 1 (MILEI)\n\nTabla_2 &lt;- palabras1.1 %&gt;% \n  select(!Autor) %&gt;% \n  head(10)\n\nGrafico2 &lt;- highchart() %&gt;%   \n  hc_title(text=\"Top 10 palabras más utilizadas por Milei\")%&gt;%\n  hc_chart(type=\"bar\") %&gt;%\n  hc_xAxis(categories = Tabla_2$word) %&gt;%\n  hc_add_series(Tabla_2$n, name=\"Palabras\") %&gt;% \n  hc_plotOptions(\n    bar = list(\n      colorByPoint = TRUE\n    )) %&gt;% \n  hc_credits(enabled = TRUE, text = \"Elaboración propia en base a datos de  Casa Rosada.\") %&gt;% \n  hc_colors(color=\"#7570b3\") %&gt;% \n  hc_legend(FALSE)\n  \nGrafico2\n\n\n\n\n\n\nPalabras de Fernandez\n\n\nVer código\n#nube de palabras discurso 2\n\nwordcloud(palabras2.1$word,palabras1.1$n,scale=c(4,.1),random.order=FALSE,random.color=TRUE,rot.per=0.4,colors= c(\"#44c2fd\"))\n\n\n\n\n\n\n\n\n\nPor su parte, Alberto Fernandez posicionó a Argentina en el primer puesto de su lista de palabras. Tambien se advierte la presencia de terminos como “desarrollo” y “federal”.\n\n\nVer código\n#TOP 10 discurso 2 (FERNANDEZ)\n\nTabla_3 &lt;- palabras2.1 %&gt;% \n  select(!Autor) %&gt;% \n  head(10)\n\nGrafico3 &lt;- highchart() %&gt;%   \n  hc_title(text=\"Top 10 palabras más utilizadas por Fernandez\")%&gt;%\n  hc_chart(type=\"bar\") %&gt;%\n  hc_xAxis(categories = Tabla_3$word) %&gt;%\n  hc_add_series(Tabla_3$n, name=\"Palabras\") %&gt;% \n  hc_plotOptions(\n    bar = list(\n      colorByPoint = TRUE\n    )) %&gt;% \n  hc_credits(enabled = TRUE, text = \"Elaboración propia en base a datos de  Casa Rosada.\") %&gt;% \n  hc_colors(color=\"#44c2fd\") %&gt;% \n  hc_legend(FALSE)\n  \nGrafico3\n\n\n\n\n\n\nPalabras de Macri\n\n\nVer código\n#nube de palabras discurso 3\n\nwordcloud(palabras3.1$word,palabras1.1$n,scale=c(4,.1),random.order=FALSE,random.color=TRUE,rot.per=0.4,colors= c(\"gold\"))\n\n\n\n\n\n\n\n\n\ngraf\n\n\nVer código\n#TOP 10 discurso 3 (MACRI)\n\nTabla_4 &lt;- palabras3.1 %&gt;% \n  select(!Autor) %&gt;% \n  head(10)\n\nGrafico4 &lt;- highchart() %&gt;%   \n  hc_title(text=\"Top 10 palabras más utilizadas por Macri\")%&gt;%\n  hc_chart(type=\"bar\") %&gt;%\n  hc_xAxis(categories = Tabla_4$word) %&gt;%\n  hc_add_series(Tabla_4$n, name=\"Palabras\") %&gt;% \n  hc_plotOptions(\n    bar = list(\n      colorByPoint = TRUE\n    )) %&gt;% \n  hc_credits(enabled = TRUE, text = \"Elaboración propia en base a datos de  Casa Rosada.\") %&gt;% \n  hc_colors(color=\"gold\") %&gt;% \n  hc_legend(FALSE)\n  \nGrafico4"
+  },
+  {
+    "objectID": "posts/welcome/index.html#propuesta",
+    "href": "posts/welcome/index.html#propuesta",
+    "title": "Bienvenidos a Bitácora",
+    "section": "Propuesta",
+    "text": "Propuesta\nLa idea del blog es ofrecer ejemplos didácticos de todas las posibilidades que brinda el mundo del análisis de datos, desde su limpieza hasta la generación de información.\nEn los tiempos que corren, casi cualquier problemática puede abordarse a partir de la busqueda y explotación de datos. Por ello resulta fundamental el entrenamiento en esta materia.\nBienvenidos!"
   }
 ]

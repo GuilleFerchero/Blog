@@ -15,4 +15,4 @@ La idea del blog es ofrecer ejemplos didácticos de todas las posibilidades que 
 
 En los tiempos que corren, casi cualquier problemática puede abordarse a partir de la busqueda y explotación de datos. Por ello resulta fundamental el entrenamiento en esta materia.
 
-Bienvenidos!
+Bienvenidos!!
