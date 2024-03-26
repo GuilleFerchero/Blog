@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Bitácora de datos",
     "section": "",
-    "text": "Bienvenidos a Bitácora\n\n\n\n\n\n\neditorial\n\n\n\n\n\n\n\n\n\nMar 21, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 16, 2024\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis de discursos inaugurales\n\n\n\n\n\n\npolítica\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 5, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\nNo matching items"
+    "text": "Bienvenidos a Bitácora\n\n\n\n\n\n\neditorial\n\n\n\n\n\n\n\n\n\nMar 21, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\n\n\n\n\n\n\nExplorando Netflix\n\n\nExplorando que hay detras de Netflix\n\n\n\ncultura\n\n\n\n\n\n\n\n\n\nMar 16, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis de discursos inaugurales\n\n\n\n\n\n\npolítica\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 5, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/post-with-code/index.html",
     "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
+    "title": "Explorando Netflix",
     "section": "",
-    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
+    "text": "A continuación veremos algunas técnicas de análisis exploratorio utilizando un dataset muy intersante que contiene productos de Netflix con sus respectivas variables. El dataset puede encontrarse en el sitio de kaggle.\nVamos a trabajar con las librerías tidyverse , lubridate y kableExtra"
   },
   {
     "objectID": "about.html",
@@ -25,7 +25,7 @@
     "href": "posts/welcome/index.html",
     "title": "Bienvenidos a Bitácora",
     "section": "",
-    "text": "Hola!. Bienvenidos a Bitácora. Un blog que contiene artículos cuyo hilo conductor son los datos y sus análisis mediante R. Los tópicos a cubrir van desde cultura general hasta urbanismo y movilidad pasando por analisis de discurso y datos deportivos."
+    "text": "Hola!. Bienvenidos a Bitácora. Un blog que contiene artículos cuyo hilo conductor son los datos y sus análisis mediante R.\nLos tópicos a cubrir van desde cultura general hasta urbanismo y movilidad pasando por anàlisis de discurso y datos deportivos."
   },
   {
     "objectID": "posts/Discursos Políticos/index.html",
@@ -82,5 +82,12 @@
     "title": "Bienvenidos a Bitácora",
     "section": "Propuesta",
     "text": "Propuesta\nLa idea del blog es ofrecer ejemplos didácticos de todas las posibilidades que brinda el mundo del análisis de datos, desde su limpieza hasta la generación de información.\nEn los tiempos que corren, casi cualquier problemática puede abordarse a partir de la busqueda y explotación de datos. Por ello resulta fundamental el entrenamiento en esta materia.\nBienvenidos!!"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#explorando-netflix",
+    "href": "posts/post-with-code/index.html#explorando-netflix",
+    "title": "Explorando Netflix",
+    "section": "",
+    "text": "A continuación veremos algunas técnicas de análisis exploratorio utilizando un dataset muy intersante que contiene productos de Netflix con sus respectivas variables. El dataset puede encontrarse en el sitio de kaggle.\nVamos a trabajar con las librerías tidyverse , lubridate y kableExtra"
   }
 ]

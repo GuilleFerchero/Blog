@@ -5,7 +5,9 @@ date: "2024-03-21"
 categories: [editorial]
 ---
 
-Hola!. Bienvenidos a **Bitácora**. Un blog que contiene artículos cuyo hilo conductor son los datos y sus análisis mediante R. Los tópicos a cubrir van desde cultura general hasta urbanismo y movilidad pasando por analisis de discurso y datos deportivos.
+Hola!. Bienvenidos a **Bitácora**. Un blog que contiene artículos cuyo hilo conductor son los datos y sus análisis mediante R.
+
+Los tópicos a cubrir van desde cultura general hasta urbanismo y movilidad pasando por anàlisis de discurso y datos deportivos.
 
 ![](thumbnail2.jpg)
 

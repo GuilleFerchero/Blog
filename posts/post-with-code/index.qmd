@@ -1,13 +1,149 @@
 ---
-title: "Post With Code"
-author: "Harlow Malloc"
+title: "Explorando Netflix"
+subtitle: "Explorando que hay detras de Netflix"
+author: "Guille Ferchero"
 date: "2024-03-16"
-categories: [news, code, analysis]
-image: "image.jpg"
+categories: [cultura]
+image: "images.jpg"
+format: 
+  html:
+    toc: true #arma menu
+    code-fold: true #oculta el codigo
+    code-summary: "Ver código" #leyenda para mostrar codigo
 ---
 
-This is a post with executable code.
+## **Explorando Netflix**
+
+![](netflix-logo.jpg)
+
+A continuación veremos algunas técnicas de análisis exploratorio utilizando un dataset muy intersante que contiene productos de Netflix con sus respectivas variables. El dataset puede encontrarse en el [sitio](https://www.kaggle.com/shivamb/netflix-shows) de kaggle.
+
+Vamos a trabajar con las librerías [tidyverse](https://www.tidyverse.org/) , [lubridate](https://lubridate.tidyverse.org/) y [kableExtra](https://haozhu233.github.io/kableExtra/)
+
 
 ```{r}
-1 + 1
+#| echo: false
+#| include: false
+
+
+
+#Limpiamos ambiente de trabajo
+
+rm(list = ls())
+
+#Instalamos Librerías
+
+library(tidyverse)
+library("tidytext")
+library(lubridate)
+library(kableExtra)
+
+#Leemos los datos
+
+Base <- read_csv(file = "data/netflix_titles.csv")
+
 ```
+
+# Limpieza y creación de objetos auxiliares
+
+```{r}
+
+#Limpiamos columnas
+
+Base$rating <- as.factor(Base$rating)
+Base$date_added <- mdy(Base$date_added)
+Base$Año <- year(Base$date_added)
+Base$show_id <- NULL
+
+#generamos objetos auxiliares para texto dinámico
+
+Desde <- Base %>% 
+  select(date_added) %>% 
+  arrange(date_added) %>% 
+  head(1) %>% 
+  pull()
+
+Hasta <- Base %>% 
+  select(date_added) %>% 
+  arrange(desc(date_added)) %>% 
+  head(1) %>% 
+  pull()
+
+cantidad <- nrow(Base)
+
+```
+
+La Base contiene `r cantidad` productos de Netflix emitidos desde `r Desde` hasta `r Hasta`. Veamos como es la distribución por el tipo de show.
+
+# Series vs Películas
+
+```{r}
+
+Tabla_1 <- Base %>% 
+  select(type) %>% 
+  group_by(type) %>% 
+  summarise(Total = n()) %>% 
+  mutate(Porcentaje = round(Total/sum(Total)*100,2)) %>% 
+  mutate(Etiqueta = paste0(Total, " ( % ", Porcentaje, ")"))
+
+ggplot(Tabla_1, aes(x = "" , y = Total, fill = type ))+
+  geom_bar(stat = "identity", width = 0.5)+
+  geom_text(aes(label = Etiqueta), position = position_stack(vjust = 0.5))+
+  scale_fill_manual(values = c("#f55951", "#f1e8e6"))+
+    labs(title = paste0("Dataset Netflix ",Desde, " - ", Hasta),
+       subtitle = "Tipos de Productos",
+       caption = "Fuente: Kaggle",
+       x = "",
+       y = "")+
+  theme_minimal()+
+  theme(text = element_text(color = "grey20"),
+        plot.title = element_text(hjust = 0.5, vjust = 0.5),
+        plot.subtitle = element_text( hjust = 0.5, vjust = 0.5),
+        legend.position = "bottom",
+        legend.title = element_blank())+
+  guides(fill = guide_legend(reverse = TRUE))+
+  coord_flip()
+
+```
+
+Puede verse que la proporción mayoritaria está compuesta por películas. Veamos como  fue la evolución de esta segmentación.
+
+```{r}
+#| message: false
+#| warning: false
+
+Tabla_2 <- Base %>% 
+  select(Año,type) %>%
+  filter(!is.na(Año)) %>%
+  filter(Año %in% c(2017:2020)) %>%
+  group_by(Año,type) %>% 
+  summarise(Total = n()) %>% 
+  mutate(Porcentaje = round(Total/sum(Total)*100,2)) %>% 
+  mutate(Etiqueta = paste0(Total, " ( % ", Porcentaje, ")"))
+
+
+Tablaaux <- Tabla_2 %>% 
+  select(Año) %>% 
+  filter(!duplicated(Año))
+
+filas <- nrow(Tablaaux)
+
+ggplot(Tabla_2, aes(x = "" , y = Total, fill = type ))+
+  geom_bar(stat = "identity", width = 1)+
+  geom_text(aes(label = Etiqueta), position = position_stack(vjust = 0.5), size =2.5)+
+  scale_fill_manual(values = c("#f55951", "#f1e8e6"))+
+    labs(title = paste0("Dataset Netflix ",Desde, " - ", Hasta),
+       subtitle = "Tipos de Productos",
+       caption = "Fuente: Kaggle",
+       x = "",
+       y = "")+
+  theme_minimal()+
+  theme(plot.title = element_text(hjust = 0.5, vjust = 0.5),
+        plot.subtitle = element_text( hjust = 0.5, vjust = 0.5),
+        legend.position = "bottom",
+        legend.title = element_blank())+
+  guides(fill = guide_legend(reverse = TRUE))+
+  coord_flip()+
+  facet_wrap(~Año, nrow = filas)
+```
+
