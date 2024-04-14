@@ -146,4 +146,173 @@ ggplot(Tabla_2, aes(x = "" , y = Total, fill = type ))+
   coord_flip()+
   facet_wrap(~Año, nrow = filas)
 ```
+Puede apreciarse un significativo crecimiento de la proporción de la oferta dedicada a las series. Veamos como se resuelve esta dicotomía al enfrentar las proporciones con la variable pais de origen. 
+Dado que la variable "country" puede contener varios paises debido a coproducciones, puede resultar util generar un nuevo dataframe con todos los paises por separado. 
+Luego, elaboraremos una nueva tabla que contenga las cifras de cada tipo de producción junto con el porcentaje que representa al interior de cada país. Estos son los 10 paises que encabezan el ranking
 
+
+```{r}
+#| message: false
+#| warning: false
+
+paises <- strsplit(Base$country, split = ", ")
+paises_split <- data.frame(tipo = rep(Base$type, sapply(paises, length)), paises = unlist(paises))
+
+paises_split$paises <- gsub(",","",paises_split$paises)
+
+prod_por_pais <- paises_split %>% 
+  filter(!is.na(paises)) %>%
+  group_by(paises,tipo) %>% 
+  summarise(total = n()) %>% 
+  arrange(desc(total)) %>% 
+  mutate(tipo = case_when(tipo == "Movie" ~ "Peliculas",
+                           tipo == "TV Show" ~ "TV"))
+
+
+
+prod_por_pais_spread <- prod_por_pais %>% 
+  spread(.,tipo,total) %>%
+  mutate_all(.,~replace(.,is.na(.),0)) %>% 
+  mutate(Total = Peliculas + TV) %>% 
+  mutate(Porc_Peliculas = round(Peliculas/Total*100,2)) %>% 
+  mutate(Porc_TV = round(TV/Total*100,2)) %>% 
+  mutate(Etiqueta_Peliculas = paste0(Peliculas, " ( % ", Porc_Peliculas, ")")) %>% 
+  mutate(Etiqueta_TV = paste0(TV, " ( % ", Porc_TV, ")")) %>% 
+  arrange(desc(Total))
+  
+Tabla_3 <- prod_por_pais_spread %>% 
+  select(paises,Etiqueta_Peliculas,Etiqueta_TV,Total) %>%
+  head(10)
+  
+#HACER TABLA CON KABLE
+
+kable(Tabla_3,align = "l",digits = 3,col.names = c("Paises","Películas","TV Show","Total"))%>% 
+        column_spec(1, bold = TRUE, color = "#f55951") %>%
+  row_spec(0,background = "#f55951", color = "white") %>% 
+  add_header_above(c(" " = 1,
+                     "Tipo de Productos"= 2,
+                     " " =1)) %>% 
+  kable_minimal()
+
+
+```
+
+
+Veamos la misma información en formato gráfico:
+
+
+```{r}
+#| message: false
+#| warning: false
+
+
+Tabla_4.1 <- prod_por_pais %>%
+  filter(tipo == "TV") %>% 
+  head(10)
+
+Tabla_4.2 <- prod_por_pais %>%
+  filter(tipo == "Peliculas") %>% 
+  head(10)
+
+Tabla_4.3 <- rbind(Tabla_4.1,Tabla_4.2) %>% 
+  mutate(tipo = as.factor(tipo),
+         paises = reorder_within(paises,total,tipo))
+
+ggplot(Tabla_4.3, aes(x=fct_reorder(paises,total), y=total, fill = tipo))+
+  geom_col(show.legend = FALSE)+
+  scale_fill_manual(values = c("#f55951", "#f1e8e6"))+
+  facet_wrap(~tipo, scales = "free_y")+
+  coord_flip()+
+  scale_x_reordered()+
+  scale_y_continuous(expand = c(0,0))+
+  labs(title = paste0("Dataset Netflix ",Desde, "-", Hasta),
+       subtitle = "Distribución de productos por país",
+       caption = "Fuente: Kaggle",
+       x = "",
+       y = "")+
+  theme_minimal()+
+  theme(plot.title = element_text( hjust = 0.5, vjust = 0.5),
+        plot.subtitle = element_text( hjust = 0.5, vjust = 0.5))
+
+```
+La gráfica evidencia que Estados Unidos es el principal proovedor de contenido de la plataforma con una distancia de mayor amplitud en el caso de las peliculas, donde India supera a Gran Bretaña en el segundo lugar.
+
+
+# Duración
+
+Veamos ahora la exploración de los contenidos según la duración.
+
+
+```{r}
+#| message: false
+#| warning: false
+
+Base$duracion <- as.numeric(str_extract(Base$duration,'[0-9]+'))
+
+ggplot(Base %>% 
+         filter(type == "Movie"),aes(x = factor(Año), y = duracion))+
+  geom_boxplot(color = "#f55951")+
+  labs(title = paste0("Dataset Netflix ",Desde, "-", Hasta),
+       subtitle = "Duración de películas por año",
+       caption = "Fuente: Kaggle",
+       x = "Año",
+       y = "Duración (en minutos)")+
+  theme_minimal()+
+  theme(plot.title = element_text( hjust = 0.5 , vjust = 0.5),
+        plot.subtitle = element_text( hjust = 0.5 , vjust = 0.5))
+
+
+```
+
+Tambien podemos mostrar la misma información a partir de un gráfico de puntos:
+
+```{r}
+
+#| message: false
+#| warning: false
+
+Base$duracion <- as.numeric(str_extract(Base$duration,'[0-9]+'))
+
+ggplot(Base %>% 
+         filter(type == "Movie"),aes(x = factor(Año), y = duracion))+
+  geom_point(color = "#f55951")+
+  labs(title = paste0("Dataset Netflix ",Desde, "-", Hasta),
+       subtitle = "Duración de series por año",
+       caption = "Fuente: Kaggle",
+       x = "Año",
+       y = "Duración (en cantidad de temporadas)")+
+  theme_minimal()+
+  theme(plot.title = element_text( hjust = 0.5 , vjust = 0.5),
+        plot.subtitle = element_text( hjust = 0.5 , vjust = 0.5))
+  
+
+
+```
+
+Para finalizar, puede resultar de gran interés analizar la cantidad de temporadas de las series y su evolución con el correr de los años, tomando en consideración su año de lanzamiento.
+
+
+
+```{r}
+
+#| message: false
+#| warning: false
+
+Base$duracion <- as.numeric(str_extract(Base$duration,'[0-9]+'))
+
+ggplot(Base %>% 
+         filter(type == "TV Show"),aes(x = factor(release_year), y = duracion))+
+  geom_point(color = "#f55951")+
+  labs(title = paste0("Dataset Netflix ",Desde, "-", Hasta),
+       subtitle = "Duración de series por año",
+       caption = "Fuente: Kaggle",
+       x = "Año",
+       y = "Duración (en cantidad de temporadas)")+
+  theme_minimal()+
+  theme(plot.title = element_text( hjust = 0.5 , vjust = 0.5),
+        plot.subtitle = element_text( hjust = 0.5 , vjust = 0.5),
+        axis.text.x = element_text(angle = 90))
+  
+
+
+```
