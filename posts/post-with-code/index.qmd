@@ -2,7 +2,7 @@
 title: "Explorando Netflix"
 subtitle: "Explorando que hay detras de Netflix"
 author: "Guille Ferchero"
-date: "2024-03-16"
+date: "2024-04-15"
 categories: [cultura]
 image: "images.jpg"
 format: 
@@ -22,10 +22,9 @@ Vamos a trabajar con las librerías [tidyverse](https://www.tidyverse.org/) , [l
 
 
 ```{r}
-#| echo: false
-#| include: false
-
-
+#| echo: true
+#| message: false
+#| include: true
 
 #Limpiamos ambiente de trabajo
 

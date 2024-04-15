@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Bitácora de datos",
     "section": "",
-    "text": "Bienvenidos a Bitácora\n\n\n\n\n\n\neditorial\n\n\n\n\n\n\n\n\n\nMar 21, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\n\n\n\n\n\n\nExplorando Netflix\n\n\nExplorando que hay detras de Netflix\n\n\n\ncultura\n\n\n\n\n\n\n\n\n\nMar 16, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis de discursos inaugurales\n\n\n\n\n\n\npolítica\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 5, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\nNo matching items"
+    "text": "Explorando Netflix\n\n\nExplorando que hay detras de Netflix\n\n\n\ncultura\n\n\n\n\n\n\n\n\n\nApr 15, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\n\n\n\n\n\n\nBienvenidos a Bitácora\n\n\n\n\n\n\neditorial\n\n\n\n\n\n\n\n\n\nMar 21, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\n\n\n\n\n\n\nAnálisis de discursos inaugurales\n\n\n\n\n\n\npolítica\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 5, 2024\n\n\nGuille Ferchero\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/post-with-code/index.html",
     "href": "posts/post-with-code/index.html",
     "title": "Explorando Netflix",
     "section": "",
-    "text": "A continuación veremos algunas técnicas de análisis exploratorio utilizando un dataset muy intersante que contiene productos de Netflix con sus respectivas variables. El dataset puede encontrarse en el sitio de kaggle.\nVamos a trabajar con las librerías tidyverse , lubridate y kableExtra"
+    "text": "A continuación veremos algunas técnicas de análisis exploratorio utilizando un dataset muy intersante que contiene productos de Netflix con sus respectivas variables. El dataset puede encontrarse en el sitio de kaggle.\nVamos a trabajar con las librerías tidyverse , lubridate y kableExtra\n\n\nVer código\n#Limpiamos ambiente de trabajo\n\nrm(list = ls())\n\n#Instalamos Librerías\n\nlibrary(tidyverse)\nlibrary(\"tidytext\")\nlibrary(lubridate)\nlibrary(kableExtra)\n\n#Leemos los datos\n\nBase &lt;- read_csv(file = \"data/netflix_titles.csv\")"
   },
   {
     "objectID": "about.html",
@@ -88,6 +88,6 @@
     "href": "posts/post-with-code/index.html#explorando-netflix",
     "title": "Explorando Netflix",
     "section": "",
-    "text": "A continuación veremos algunas técnicas de análisis exploratorio utilizando un dataset muy intersante que contiene productos de Netflix con sus respectivas variables. El dataset puede encontrarse en el sitio de kaggle.\nVamos a trabajar con las librerías tidyverse , lubridate y kableExtra"
+    "text": "A continuación veremos algunas técnicas de análisis exploratorio utilizando un dataset muy intersante que contiene productos de Netflix con sus respectivas variables. El dataset puede encontrarse en el sitio de kaggle.\nVamos a trabajar con las librerías tidyverse , lubridate y kableExtra\n\n\nVer código\n#Limpiamos ambiente de trabajo\n\nrm(list = ls())\n\n#Instalamos Librerías\n\nlibrary(tidyverse)\nlibrary(\"tidytext\")\nlibrary(lubridate)\nlibrary(kableExtra)\n\n#Leemos los datos\n\nBase &lt;- read_csv(file = \"data/netflix_titles.csv\")"
   }
 ]
