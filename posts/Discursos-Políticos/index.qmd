@@ -31,9 +31,9 @@ Procedemos a activar librerías de trabajo y definir un objeto con una lista de 
 
 ```{r , echo=FALSE, warning=FALSE,message = FALSE}
 
-#| echo: false
-#| warnning: false
-#| include: false
+#| echo: true
+#| message: false
+#| include: true
 
 
 #rm(list =ls())
