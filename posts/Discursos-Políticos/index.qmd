@@ -29,15 +29,10 @@ A continuación vamos a ver un breve análisis de texto acerca de los primeros d
 
 Procedemos a activar librerías de trabajo y definir un objeto con una lista de palabras que vamos a excluir del análisis.
 
-```{r , echo=FALSE, warning=FALSE,message = FALSE}
-
+```{r}
 #| echo: true
 #| message: false
 #| include: true
-
-
-#rm(list =ls())
-
 
 for( package in c("tm", "tidyverse",
                   "ggwordcloud","proustr",
@@ -51,7 +46,6 @@ for( package in c("tm", "tidyverse",
     library(package, character.only = T)
   }
 }
-
 
 #sdal <- read.csv('data/sdal.csv', encoding = 'UTF-8')
 
