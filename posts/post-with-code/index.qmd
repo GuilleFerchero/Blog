@@ -2,7 +2,7 @@
 title: "Explorando Netflix"
 subtitle: "Explorando que hay detras de Netflix"
 author: "Guille Ferchero"
-date: "2024-04-15"
+date: "2024-06-06"
 categories: [cultura]
 image: "images.jpg"
 format: 
