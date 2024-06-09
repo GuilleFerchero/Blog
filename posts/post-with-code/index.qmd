@@ -20,7 +20,6 @@ A continuación veremos algunas técnicas de análisis exploratorio utilizando u
 
 Vamos a trabajar con las librerías [tidyverse](https://www.tidyverse.org/) , [lubridate](https://lubridate.tidyverse.org/) y [kableExtra](https://haozhu233.github.io/kableExtra/)
 
-
 ```{r}
 #| echo: true
 #| message: false
@@ -105,7 +104,7 @@ ggplot(Tabla_1, aes(x = "" , y = Total, fill = type ))+
 
 ```
 
-Puede verse que la proporción mayoritaria está compuesta por películas. Veamos como  fue la evolución de esta segmentación.
+Puede verse que la proporción mayoritaria está compuesta por películas. Veamos como fue la evolución de esta segmentación.
 
 ```{r}
 #| message: false
@@ -145,10 +144,8 @@ ggplot(Tabla_2, aes(x = "" , y = Total, fill = type ))+
   coord_flip()+
   facet_wrap(~Año, nrow = filas)
 ```
-Puede apreciarse un significativo crecimiento de la proporción de la oferta dedicada a las series. Veamos como se resuelve esta dicotomía al enfrentar las proporciones con la variable pais de origen. 
-Dado que la variable "country" puede contener varios paises debido a coproducciones, puede resultar util generar un nuevo dataframe con todos los paises por separado. 
-Luego, elaboraremos una nueva tabla que contenga las cifras de cada tipo de producción junto con el porcentaje que representa al interior de cada país. Estos son los 10 paises que encabezan el ranking
 
+Puede apreciarse un significativo crecimiento de la proporción de la oferta dedicada a las series. Veamos como se resuelve esta dicotomía al enfrentar las proporciones con la variable pais de origen. Dado que la variable "country" puede contener varios paises debido a coproducciones, puede resultar util generar un nuevo dataframe con todos los paises por separado. Luego, elaboraremos una nueva tabla que contenga las cifras de cada tipo de producción junto con el porcentaje que representa al interior de cada país. Estos son los 10 paises que encabezan el ranking
 
 ```{r}
 #| message: false
@@ -196,9 +193,7 @@ kable(Tabla_3,align = "l",digits = 3,col.names = c("Paises","Películas","TV Sho
 
 ```
 
-
 Veamos la misma información en formato gráfico:
-
 
 ```{r}
 #| message: false
@@ -234,13 +229,12 @@ ggplot(Tabla_4.3, aes(x=fct_reorder(paises,total), y=total, fill = tipo))+
         plot.subtitle = element_text( hjust = 0.5, vjust = 0.5))
 
 ```
-La gráfica evidencia que Estados Unidos es el principal proovedor de contenido de la plataforma con una distancia de mayor amplitud en el caso de las peliculas, donde India supera a Gran Bretaña en el segundo lugar.
 
+La gráfica evidencia que Estados Unidos es el principal proovedor de contenido de la plataforma con una distancia de mayor amplitud en el caso de las peliculas, donde India supera a Gran Bretaña en el segundo lugar.
 
 # Duración
 
 Veamos ahora la exploración de los contenidos según la duración.
-
 
 ```{r}
 #| message: false
@@ -289,8 +283,6 @@ ggplot(Base %>%
 ```
 
 Para finalizar, puede resultar de gran interés analizar la cantidad de temporadas de las series y su evolución con el correr de los años, tomando en consideración su año de lanzamiento.
-
-
 
 ```{r}
 
