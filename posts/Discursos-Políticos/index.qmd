@@ -13,7 +13,7 @@ format:
 
 ## Discursos inaugurales
 
-A continuación vamos a ver un breve análisis de texto acerca de los primeros discursos inaugurales de Asambleas Legislativas de Macri, Fernandez y Milei. La idea es evaluar cuales fueron los términos más utilizados por los mandatarios y, sumado a ello, entender en los sentimientos volcados en los discursos.
+A continuación vamos a ver un breve análisis de texto acerca de los primeros discursos inaugurales de Asambleas Legislativas de Macri, Fernandez y Milei. El objetivo es evaluar cuales fueron los términos más utilizados por los mandatarios y, sumado a ello, entender en los sentimientos volcados en los discursos.
 
 ## Ideas
 
