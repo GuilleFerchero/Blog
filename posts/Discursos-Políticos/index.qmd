@@ -1,5 +1,5 @@
 ---
-title: "Análisis de discursos inaugurales"
+title: "Análisis de discursos inaugurales - Congreso"
 author: "Guille Ferchero"
 date: "2024-03-05"
 categories: [política, code, analysis]
