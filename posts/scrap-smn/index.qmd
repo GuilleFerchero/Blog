@@ -1,0 +1,24 @@
+---
+title: "Extrayendo datos del clima"
+subtitle: "Probando funciones y bucles"
+author: "Guille Ferchero"
+date: "2025-02-26"
+categories: [herramientas]
+image: "images.jpg"
+format: 
+  html:
+    toc: true #arma menu
+    code-fold: true #oculta el codigo
+    code-summary: "Ver código" #leyenda para mostrar codigo
+---
+
+## Funciones de scrapeo
+
+La idea de este breve artículo es mostrar una función para descargar datos desde el sitio del Servicio Meteorológico Nacional [SMN](https://www.smn.gob.ar/) y ,al mismo tiempo, entrenar el uso de funciones y bucles para un fin determinado.
+
+# Ideas
+
+En la sección [Descarga del Catálogo de Datos Abiertos del SMN](https://www.smn.gob.ar/descarga-de-datos) y luego de dar conformidad al acuerdo, es posible acceder a los datos diarios que el servicio pone a disposición, tal cual se ve en la siguiente imágen:
+
+
+![](img/img1.png)
