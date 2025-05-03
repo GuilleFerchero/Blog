@@ -1,0 +1,84 @@
+---
+title: "scrap setup"
+---
+
+```{r}
+#| echo: true
+#| message: false
+#| include: true
+
+rm(list = ls())
+
+for( package in c("tm", 
+                  "tidyverse",
+                  "ggwordcloud",
+                  "rvest",
+                  "proustr",
+                  "stopwords",
+                  "udpipe",
+                  "syuzhet",
+                  "SnowballC",
+                  "knitr",
+                  "kableExtra",
+                  "tidytext",
+                  "plotly",
+                  "wordcloud",
+                  "ggtern")) {
+  
+  if (!require(package, character.only = T, quietly = T)) {
+    install.packages(package, repos = "http://cran.us.r-project.org")
+    library(package, character.only = T)
+  }
+}
+
+#sdal <- read.csv('data/sdal.csv', encoding = 'UTF-8')
+
+palabras_inutiles <- c("aplausos","si","ser","vez","cada")
+```
+
+Fuente: https://tecysoc.netlify.app/posts/discursos/#caso-aplicado-escrapeo-a-la-web-de-la-casa-rosada
+
+```{r}
+# codigo para obtener nuevos enlaces de una página
+
+get_new_links <- function(link){
+  tryCatch({
+    base <- link  # Establece el enlace base
+    nodes <- read_html(link) %>% rvest::html_nodes("a") # Obtiene nodos de enlaces
+    df <- tibble(link = html_attr(nodes, "href"), titulo = html_text(nodes)) %>%   # Crea data frame con enlaces y títulos
+      filter(str_detect(link, "informacion/discursos/\\d"), !is.na(link)) %>%      # Filtra enlaces relevantes
+      mutate(link = gsub("#.*", "", link), link = xml2::url_absolute(link, base = base)) %>%  # Limpia enlaces
+      distinct(link, .keep_all = TRUE)# Elimina duplicados
+    df
+  }, error = function(err) {
+    glue::glue("Error en el enlace: {link}") # Maneja errores y muestra eventuales mensaje de error
+  })
+}
+```
+
+```{r}
+
+# nuestra función para extraer texto de de manera sistemática
+get_text <- function(link){
+  tryCatch({
+    pagina <- read_html(link)# Lee el HTML de la página
+    texto <- pagina %>% html_nodes('.jm-allpage-in') %>% html_text()# Extrae texto de la clase .jm-allpage-in
+    titulo <- pagina %>% html_nodes('strong') %>% html_text() # Extrae títulos usando etiqueta <strong>
+    df <- tibble(texto = texto, titulo = titulo) # Crea un data frame con texto y títulos
+    Sys.sleep(1)  # Espera un segundo para evitar sobrecargar el servidor
+    df
+  }, error = function(err) {
+    glue::glue("Error en el enlace: {link}")   # Maneja errores y muetra un mensaje de error
+  })
+}
+```
+
+```{r}
+paginas <- 'https://www.casarosada.gob.ar/informacion/discursos'
+```
+
+```{r}
+paginas_df <- tibble(paginas=paginas) %>% 
+  mutate(new_links= map(paginas, get_new_links)) %>% 
+  unnest(cols = c(new_links))
+```
